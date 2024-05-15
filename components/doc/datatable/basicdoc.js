@@ -8,6 +8,8 @@ import DeferredDemo from '@/components/demo/DeferredDemo';
 
 export function BasicDoc(props) {
     const [products, setProducts] = useState([]);
+    const [selectedProducts, setSelectedProducts] = useState(null);
+    const isRowSelectable = () => false;
 
     const loadDemoData = () => {
         ProductService.getProductsMini().then((data) => setProducts(data));
@@ -111,7 +113,8 @@ export default function BasicDemo() {
             </DocSectionText>
             <DeferredDemo onLoad={loadDemoData}>
                 <div className="card">
-                    <DataTable value={products} tableStyle={{ minWidth: '50rem' }}>
+                    <DataTable dataKey="id" isDataSelectable={isRowSelectable} selectionMode={'checkbox'} selection={selectedProducts} onSelectionChange={(e) => setSelectedProducts(e.value)} value={products} tableStyle={{ minWidth: '50rem' }}>
+                        <Column selectionMode="multiple" />
                         <Column field="code" header="Code" />
                         <Column field="name" header="Name" />
                         <Column field="category" header="Category" />

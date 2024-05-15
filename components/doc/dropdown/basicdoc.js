@@ -6,11 +6,11 @@ import { useState } from 'react';
 export function BasicDoc(props) {
     const [selectedCity, setSelectedCity] = useState(null);
     const cities = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
+        { name: 'New York', code: 'NY',value:'N' },
+        { name: 'Rome', code: 'RM', value: 'R' },
+        { name: 'London', code: 'LDN', value: 'L' },
+        { name: 'Istanbul', code: 'IST', value: 'I' },
+        { name: 'Paris', code: 'PRS', value: 'P' },
     ];
 
     const code = {
@@ -79,7 +79,17 @@ export default function BasicDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">
-                <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" placeholder="Select a City" className="w-full md:w-14rem" />
+                <Dropdown
+                    value={selectedCity}
+                    onChange={(e) => {
+                        setSelectedCity(e.value);
+                        console.log(e.value, 'ON CHANGE');
+                    }}
+                    options={cities}
+                    optionLabel="name"
+                    placeholder="Select a City"
+                    className="w-full md:w-14rem"
+                />
             </div>
             <DocSectionCode code={code} />
         </>

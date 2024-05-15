@@ -841,7 +841,7 @@ export default function AdvancedFilterDemo() {
                         loading={loading}
                         dataKey="id"
                         filters={filters}
-                        globalFilterFields={['name', 'country.name', 'representative.name', 'balance', 'status']}
+                        globalFilterFields={['name','date','representative.name', 'balance']}
                         header={header}
                         emptyMessage="No customers found."
                     >
@@ -867,8 +867,8 @@ export default function AdvancedFilterDemo() {
                             filter
                             filterElement={representativeFilterTemplate}
                         />
-                        <Column header="Date" filterField="date" dataType="date" style={{ minWidth: '10rem' }} body={dateBodyTemplate} filter filterElement={dateFilterTemplate} />
-                        <Column header="Balance" filterField="balance" dataType="numeric" style={{ minWidth: '10rem' }} body={balanceBodyTemplate} filter filterElement={balanceFilterTemplate} />
+                        <Column header="Date" fieldToString={(date) =>(formatDate(date))} filterField="date" dataType="date" style={{ minWidth: '10rem' }} body={dateBodyTemplate} filter filterElement={dateFilterTemplate} />
+                        <Column header="Balance" fieldToString={(cur) => (formatCurrency(cur)) } filterField="balance" dataType="numeric" style={{ minWidth: '10rem' }} body={balanceBodyTemplate} filter filterElement={balanceFilterTemplate} />
                         <Column field="status" header="Status" filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '12rem' }} body={statusBodyTemplate} filter filterElement={statusFilterTemplate} />
                         <Column field="activity" header="Activity" showFilterMatchModes={false} style={{ minWidth: '12rem' }} body={activityBodyTemplate} filter filterElement={activityFilterTemplate} />
                         <Column field="verified" header="Verified" dataType="boolean" bodyClassName="text-center" style={{ minWidth: '8rem' }} body={verifiedBodyTemplate} filter filterElement={verifiedFilterTemplate} />
